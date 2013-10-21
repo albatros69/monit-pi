@@ -36,9 +36,7 @@ INSTALL
      For instance, you can create a file in /etc/cron.d/, with the following 
      content:
 
-# Launch monit every 5 min
-
-*/5 * * * *     pi      /usr/bin/python /home/pi/monit/monit.py
+     */5 * * * *     pi      /usr/bin/python /home/pi/monit/monit.py
 
    - Make the PHP scripts available from a webserver able to interpret PHP 
      (Apache, nginx, or any other choice). To test, you can also launch 
