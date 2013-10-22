@@ -32,13 +32,11 @@ INSTALL
    - Make this directory Read/Write for the user that will launch the 
      Python script and Read-Only for the user owning the webserver process 
      that will serve the graphics (see below steps);
-   - Add in your crontab an entry to lauch the Python scripts every 5 min. 
+   - Add in your crontab an entry to launch the Python scripts every 5 min. 
      For instance, you can create a file in /etc/cron.d/, with the following 
      content:
 
-# Launch monit every 5 min
-
-*/5 * * * *     pi      /usr/bin/python /home/pi/monit/monit.py
+     */5 * * * *     pi      /usr/bin/python /home/pi/monit/monit.py
 
    - Make the PHP scripts available from a webserver able to interpret PHP 
      (Apache, nginx, or any other choice). To test, you can also launch 
@@ -47,3 +45,4 @@ INSTALL
      the directory ./www/cache where we will store the PNG files to avoid
      generating them at each request.
 
+That's all Folks!
