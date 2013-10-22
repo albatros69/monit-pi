@@ -25,6 +25,8 @@ references can be found here: http://oss.oetiker.ch/rrdtool/doc/index.en.html
 
 INSTALL
 =======
+   - Install the RRD API for PHP and Python. On Raspbian, the packages are
+     php5-rrd and python-rrdtool;
    - Create a directory (e.g. "/var/lib/monit") where you will store the 
      RRD files (the metric  historial databases);
    - Modify the variable "path_rrd" in ./monit/def_metrics.py and 
