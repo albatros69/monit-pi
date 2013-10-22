@@ -24,8 +24,7 @@ if (!file_exists($output) || ($time[1]-filemtime($output) > $periods[$period][3]
 }
 
 header('Content-Type: image/png');
-header('Content-Length: '.@filesize($output));
+//header('Content-Length: '.@filesize($output));
 readfile($output);
+flush();
 exit();
-
-?>
