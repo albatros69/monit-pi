@@ -24,14 +24,14 @@ if (isset($graph)) {
     echo "<h2>{$rrds[$graph]['title']}</h2>\n";
     foreach (array_keys($periods) as $p) {
         echo '<h3>'.ucfirst($p)." graph</h3>\n";
-        echo "<p><img src='graph.php?graph=$graph&amp;period=$p'></p>\n";
+        echo "<p><a href='${_SERVER['PHP_SELF']}?period=$p'><img src='graph.php?graph=$graph&amp;period=$p'></a></p>\n";
     }
 }
 elseif (isset($period)) {
     echo '<h2>'.ucfirst($period)." graphs</h2>\n";
     foreach ($rrds as $g => $v) {
         echo "<h3>{$v['title']}</h3>\n";
-        echo "<p><img src='graph.php?graph=$g&amp;period=$period'></p>\n";
+        echo "<p><a href='${_SERVER['PHP_SELF']}?graph=$g'><img src='graph.php?graph=$g&amp;period=$period'></a></p>\n";
     }
 }
 else {
