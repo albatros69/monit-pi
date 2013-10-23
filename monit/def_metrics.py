@@ -17,11 +17,14 @@ metrics = {
 }
 
 def _get_temp():
-    with open('/sys/bus/w1/devices/28-00000458fd58/w1_slave', 'r') as f:
-        if f.readline().strip().endswith('YES'):
-            return '%.2f' % (float(f.readline().split('=')[-1].strip())/1000, )
-        else:
-            return 'U'
+    try:
+        with open('/sys/bus/w1/devices/28-00000458fd58/w1_slave', 'r') as f:
+            if f.readline().strip().endswith('YES'):
+                return '%.2f' % (float(f.readline().split('=')[-1].strip())/1000, )
+            else:
+                return 'U'
+    except:
+        return 'U'
 
 def _get_pitemp():
     with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
