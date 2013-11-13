@@ -10,9 +10,9 @@ e.g., you can follow the evolution of the metrics (for instance your
 home temperature).
 
 There are two parts to make this happen:
-   - Python scripts (in the monit/ directory) which gathers all the
+   - Python scripts (in the ./monit/ directory) which gathers all the
      metrics;
-   - PHP scripts to view the different graphics.
+   - PHP scripts (in the ./www/ directory) to view the different graphics.
 
 All the metrics are defined in the ./monit/def_metrics.py file. All the
 RRDs databases are defined in the ./monit/def_rrds.py file. If you feel
