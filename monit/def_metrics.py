@@ -5,15 +5,15 @@ from subprocess import check_output
 
 path_rrd = '/var/lib/monit'
 metrics = {
-    'temp': { 'rrd': path_rrd+'/temp.rrd', },
-    'pitemp': { 'rrd': path_rrd+'/pitemp.rrd', },
-    'uptime': { 'rrd': path_rrd+'/uptime.rrd', },
-    'memory': { 'rrd': path_rrd+'/memory.rrd', },
+    'temp':    { 'rrd': path_rrd+'/temp.rrd', },
+    'pitemp':  { 'rrd': path_rrd+'/pitemp.rrd', },
+    'uptime':  { 'rrd': path_rrd+'/uptime.rrd', },
+    'memory':  { 'rrd': path_rrd+'/memory.rrd', },
     'cpuload': { 'rrd': path_rrd+'/cpuload.rrd', },
     'network': { 'rrd': [ path_rrd+'/net_bytes.rrd', path_rrd+'/net_packets.rrd', ], },
-    'disk': { 'rrd': path_rrd+'/disk.rrd', },
-    'nginx': { 'rrd': [ path_rrd+'/nginx_act.rrd', path_rrd+'/nginx_hist.rrd' ], },
-    'ping': { 'rrd': path_rrd+'/ping.rrd', },
+    'disk':    { 'rrd': path_rrd+'/disk.rrd', },
+    'nginx':   { 'rrd': [ path_rrd+'/nginx_act.rrd', path_rrd+'/nginx_hist.rrd' ], },
+    'ping':    { 'rrd': path_rrd+'/ping.rrd', },
 }
 
 def _get_temp():
@@ -42,6 +42,7 @@ def _get_memory():
             elif line.startswith('MemFree'):
                 mem = str(int(line.split()[1])*1024)
         return (mem, swap)
+    return ('U', 'U', )
 
 def _get_cpuload():
     with open('/proc/stat', 'r') as f:
@@ -49,6 +50,7 @@ def _get_cpuload():
             if line.startswith('cpu0'):
                 tmp = line.split()
                 return ( tmp[i] for i in range(1, 6) )
+    return ( 'U' for i in range(1, 6) )
 
 def _get_network():
     with open('/proc/net/dev', 'r') as f:
@@ -57,6 +59,7 @@ def _get_network():
                 tmp = line.strip().split()
                 # I/O bytes, I/O packets
                 return [ (tmp[1], tmp[9]), (tmp[2], tmp[10]) ]
+    return [ ('U', 'U'), ('U', 'U') ]
 
 def _get_disk():
     with open('/proc/diskstats', 'r') as f:
@@ -65,6 +68,7 @@ def _get_disk():
             if tmp[2] == 'mmcblk0':
                 # read/write
                 return (tmp[6], tmp[10])
+    return ('U', 'U', )
 
 def _get_nginx():
     try:
@@ -89,5 +93,7 @@ def _get_ping():
                 tmp = line.split('=')[1].strip().split('/')
                 return (tmp[0], tmp[2])
     except:
+        return ('U', 'U')
+    else:
         return ('U', 'U')
 
