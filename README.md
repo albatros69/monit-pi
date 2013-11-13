@@ -47,4 +47,9 @@ INSTALL
      the directory ./www/cache where we will store the PNG files to avoid
      generating them at each request.
 
+If you want to enable the monitoring of rtorrent as your bittorrent client,
+just enable the XML-RPC interface via the "scgi_local" option in your
+.rtorrent.rc file, and update the ./monit/def_metrics.py file accordingly
+(see the get_torrent function).
+
 That's all Folks!
