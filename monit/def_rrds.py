@@ -17,7 +17,7 @@ rrds = {
     'pitemp': [ 'DS:temp:GAUGE:600:U:U' ] + RRAs_avg,
     'uptime': [ 'DS:uptime:GAUGE:600:U:U' ] + RRAs_avg,
     'memory': [ 'DS:ram:GAUGE:600:U:U', 'DS:swap:GAUGE:600:U:U' ] + RRAs_avg,
-    'cpuload': [ 'DS:user:COUNTER:600:U:U', 'DS:nice:COUNTER:600:U:U', 'DS:system:COUNTER:600:U:U', 'DS:idle:COUNTER:600:U:U', 'DS:iowait:COUNTER:600:U:U' ] + RRAs_avg,
+    'cpuload': [ 'DS:user:COUNTER:600:0:101', 'DS:nice:COUNTER:600:0:101', 'DS:system:COUNTER:600:0:101', 'DS:idle:COUNTER:600:0:101', 'DS:iowait:COUNTER:600:0:101' ] + RRAs_avg,
     'network': [
         [ 'DS:input:COUNTER:600:U:U', 'DS:output:COUNTER:600:U:U' ] + RRAs_avg + RRAs_max,
         [ 'DS:input:COUNTER:600:U:U', 'DS:output:COUNTER:600:U:U' ] + RRAs_avg + RRAs_max,
