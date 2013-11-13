@@ -27,4 +27,3 @@ for m in metrics:
             rrdtool.update(metrics[m]['rrd'], 'N:%s' % values)
         else: # tuple
             rrdtool.update(metrics[m]['rrd'], 'N:'+':'.join(values))
-        
