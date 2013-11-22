@@ -1,12 +1,14 @@
 # vim: set fileencoding=utf-8 sw=4 ts=4 et:
 
 RRAs_avg = [
+    'RRA:AVERAGE:0.5:1:432',
     'RRA:AVERAGE:0.5:6:700',
     'RRA:AVERAGE:0.5:24:775',
     'RRA:AVERAGE:0.5:288:797',
 ]
 
 RRAs_max = [
+    'RRA:AVERAGE:0.5:1:432',
     'RRA:MAX:0.5:6:700',
     'RRA:MAX:0.5:24:775',
     'RRA:MAX:0.5:288:797',
