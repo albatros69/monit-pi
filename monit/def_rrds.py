@@ -8,7 +8,7 @@ RRAs_avg = [
 ]
 
 RRAs_max = [
-    'RRA:AVERAGE:0.5:1:432',
+    'RRA:MAX:0.5:1:432',
     'RRA:MAX:0.5:6:700',
     'RRA:MAX:0.5:24:775',
     'RRA:MAX:0.5:288:797',
