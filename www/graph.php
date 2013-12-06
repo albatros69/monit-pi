@@ -18,8 +18,7 @@ $options = array_merge(array('-a', 'PNG', '-w', '600', '-h', '200'), $periods[$p
 
 //print_r($options);
 
-$time = explode(' ', microtime());
-if (!file_exists($output) || ($time[1]-filemtime($output) > $periods[$period][3])) {
+if (!file_exists($output) || (time()-filemtime($output) > $periods[$period][3])) {
     rrd_graph($output, $options);
 }
 
