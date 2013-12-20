@@ -88,7 +88,7 @@ def _get_nginx():
         return ['U', 'U', 'U'], ['U', 'U', 'U']
 
 def _get_ping():
-    cmd = [ 'ping', '-n', '-c3', '-q', '82.228.205.254' ]
+    cmd = [ 'ping', '-n', '-c3', '-q', 'www.google.com' ]
     try:
         for line in check_output(cmd).splitlines():
             if line.startswith('rtt '):
