@@ -29,8 +29,11 @@ def _get_temp():
         return 'U'
 
 def _get_pitemp():
-    with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
-        return '%.2f' % (float(f.read().strip())/1000, )
+    try:
+        with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
+            return '%.2f' % (float(f.read().strip())/1000, )
+    except:
+        return 'U'
 
 def _get_uptime():
     with open('/proc/uptime', 'r') as f:
