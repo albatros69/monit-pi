@@ -4,13 +4,14 @@ from urllib2 import urlopen
 from subprocess import check_output
 from rtorrent_xmlrpc import *
 
+nb_cpu = 1
 path_rrd = '/var/lib/monit'
 metrics = {
     'temp':    { 'rrd': path_rrd+'/temp.rrd', },
     'pitemp':  { 'rrd': path_rrd+'/pitemp.rrd', },
     'uptime':  { 'rrd': path_rrd+'/uptime.rrd', },
     'memory':  { 'rrd': path_rrd+'/memory.rrd', },
-    'cpuload': { 'rrd': path_rrd+'/cpuload.rrd', },
+    'cpuload': { 'rrd': [ path_rrd+'/cpuload-%d.rrd' % i for i in range(nb_cpu) ], },
     'network': { 'rrd': [ path_rrd+'/net_bytes.rrd', path_rrd+'/net_packets.rrd', ], },
     'disk':    { 'rrd': path_rrd+'/disk.rrd', },
     'nginx':   { 'rrd': [ path_rrd+'/nginx_act.rrd', path_rrd+'/nginx_hist.rrd' ], },
@@ -51,11 +52,13 @@ def _get_memory():
 
 def _get_cpuload():
     with open('/proc/stat', 'r') as f:
+        cpu_lst = [ 'cpu%d' % i for i in xrange(nb_cpu) ]
+        result = []
         for line in f:
-            if line.startswith('cpu0'):
-                tmp = line.split()
-                return ( tmp[i] for i in range(1, 6) )
-    return ( 'U' for i in range(1, 6) )
+            tmp = line.split()
+            if tmp[0] in cpu_lst:
+                result.append(tuple( tmp[i] for i in range(1, 6) ))
+    return ( ( 'U', ) * 6, ) * nb_cpu
 
 def _get_network():
     with open('/proc/net/dev', 'r') as f:
