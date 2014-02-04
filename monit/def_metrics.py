@@ -58,7 +58,7 @@ def _get_cpuload():
             tmp = line.split()
             if tmp[0] in cpu_lst:
                 result.append(tuple( tmp[i] for i in range(1, 6) ))
-    return ( ( 'U', ) * 6, ) * nb_cpu
+    return ( ( 'U', ) * 5, ) * nb_cpu
 
 def _get_network():
     with open('/proc/net/dev', 'r') as f:
