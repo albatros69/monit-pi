@@ -53,6 +53,6 @@ $nb_cpu = 1;
 for ($i=0; $i<$nb_cu; $i++)
     $rrds["cpu_load_$i"] = array('title' => "CPU Load #$i",
         'graph' => array('-v', '%', '--alt-autoscale-max', "DEF:user=$path_rrd/cpuload-$i.rrd:user:AVERAGE:step=300", "DEF:iowait=$path_rrd/cpuload-$i.rrd:iowait:AVERAGE:step=300", "DEF:system=$path_rrd/cpuload-$i.rrd:system:AVERAGE:step=300", 'COMMENT:          ', 'COMMENT:Maximum ', 'COMMENT:Average ', 'COMMENT:Minimum ', 'COMMENT:Current  ', "COMMENT:Generated $now\l", 'AREA:user#FF0000:User   ', 'GPRINT:user:MAX:%6.2lf %%', 'GPRINT:user:AVERAGE:%6.2lf %%', 'GPRINT:user:MIN:%6.2lf %%', 'GPRINT:user:LAST:%6.2lf %%\l', 'AREA:iowait#FFAE00:IO wait:STACK', 'GPRINT:iowait:MAX:%6.2lf %%', 'GPRINT:iowait:AVERAGE:%6.2lf %%', 'GPRINT:iowait:MIN:%6.2lf %%', 'GPRINT:iowait:LAST:%6.2lf %%\l', 'AREA:system#B048B5:System :STACK', 'GPRINT:system:MAX:%6.2lf %%', 'GPRINT:system:AVERAGE:%6.2lf %%', 'GPRINT:system:MIN:%6.2lf %%', 'GPRINT:system:LAST:%6.2lf %%\l')
-    ),
+    );
 
 ?>
