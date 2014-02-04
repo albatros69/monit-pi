@@ -8,6 +8,10 @@
 		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
     </head>
 
+    <style>
+        img { width: 100%; height: auto; max-width: 700px; }
+    </style>
+
     <body>
 <?php
 include('monit.inc.php');

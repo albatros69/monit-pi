@@ -13,8 +13,8 @@ if (isset($_GET['period']) && in_array($_GET['period'], array_keys($periods)))
 else
     $period = 'daily';
 
-$output = "cache/$graph-$period.png";
-$options = array_merge(array('-a', 'PNG', '-w', '600', '-h', '200'), $periods[$period], array_map('utf8_encode', $rrds[$graph]['graph']));
+$output = "cache/$graph-$period.svg";
+$options = array_merge(array('-a', 'SVG', '-w', '600', '-h', '200'), $periods[$period], array_map('utf8_encode', $rrds[$graph]['graph']));
 
 //print_r($options);
 
@@ -22,7 +22,7 @@ if (!file_exists($output) || (time()-filemtime($output) > $periods[$period][3]))
     rrd_graph($output, $options);
 }
 
-header('Content-Type: image/png');
+header('Content-Type: image/svg+xml');
 //header('Content-Length: '.@filesize($output));
 readfile($output);
 flush();
