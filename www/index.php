@@ -35,8 +35,8 @@ if (isset($graph)) {
 elseif (isset($period)) {
     echo '<h2>'.ucfirst($period)." graphs</h2>\n";
     foreach ($rrds as $g => $v) {
-        echo "<h3>{$v['title']}</h3>\n";
-        echo "<div class=\"graph\"><p><a href='${_SERVER['PHP_SELF']}?graph=$g'><img src='graph.php?graph=$g&amp;period=$period'></a></p></div>\n";
+        echo "<div class=\"graph\"><h3>{$v['title']}</h3>\n";
+        echo "<p><a href='${_SERVER['PHP_SELF']}?graph=$g'><img src='graph.php?graph=$g&amp;period=$period'></a></p></div>\n";
     }
 }
 else {
