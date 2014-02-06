@@ -4,8 +4,10 @@ from urllib2 import urlopen
 from subprocess import check_output
 from rtorrent_xmlrpc import *
 
+# To be adapted to your platform
 nb_cpu = 1
 path_rrd = '/var/lib/monit'
+
 metrics = {
     'temp':    { 'rrd': path_rrd+'/temp.rrd', },
     'pitemp':  { 'rrd': path_rrd+'/pitemp.rrd', },
