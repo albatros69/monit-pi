@@ -19,12 +19,14 @@ RRDs databases are defined in the ./monit/def_rrds.py file. If you feel
 the need to modify the look and shape of the graphics, you should look
 into the ./www/monit.inc.php.
 
-To deactivate one particular monitoring, you just have to comment the 
-according definitions in ./monit/def_metrics.py (to disable the monitoring)
-and in ./www/monit.inc.php (to remove the graph). You can obviously add
-metrics by editing the same files, but don't forget to add the necessary
-definitions in ./monit/def_rrds.py to specify the characteristics of the 
-RRD database!
+You will have to adapt the number of CPUs of your platform in 
+./monit/def_metrics.py (beginning of the file) and ./www/monit.inc.php 
+(end of the file). To deactivate one particular monitoring, you just have 
+to comment the according definitions in ./monit/def_metrics.py (to disable 
+the monitoring) and in ./www/monit.inc.php (to remove the graph). You can 
+obviously add metrics by editing the same files, but don't forget to add 
+the necessary definitions in ./monit/def_rrds.py to specify the 
+characteristics of the RRD database!
 
 If you need help or insights about RRD, a good starting point but also
 references can be found here: http://oss.oetiker.ch/rrdtool/doc/index.en.html
