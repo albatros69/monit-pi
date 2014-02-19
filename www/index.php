@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿<!DOCTYPE HTML>
 <html>
     <head>
         <title>Monitoring of <?php echo gethostname();?></title>
@@ -6,12 +6,13 @@
         <meta http-equiv="pragma" content="no-cache" />
         <meta http-equiv="cache-control" content="no-cache" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    </head>
 
-    <style>
-        img { width: 100%; height: auto; max-width: 700px; }
-        div.graph { display: inline-block; margin-right: 1em; }
-    </style>
+        <style>
+            img { width: 100%; height: auto; max-width: 700px; }
+            div.graph { display: inline-block; margin-right: 1em; }
+        </style>
+
+    </head>
 
     <body>
 <?php
