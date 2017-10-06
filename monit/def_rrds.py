@@ -31,6 +31,11 @@ rrds = {
         [ 'DS:accept:COUNTER:600:U:U', 'DS:handled:COUNTER:600:U:U', 'DS:req:COUNTER:600:U:U' ] + RRAs_avg + RRAs_max,
     ],
     'ping': [ 'DS:min:GAUGE:600:U:U', 'DS:max:GAUGE:600:U:U' ] + RRAs_avg,
+    'torrent': [
+        [ 'DS:down:GAUGE:600:U:U', 'DS:up:GAUGE:600:U:U', 'DS:total:GAUGE:600:U:U' ] + RRAs_avg,
+        [ 'DS:down:GAUGE:600:U:U', 'DS:up:GAUGE:600:U:U' ] + RRAs_avg,
+        [ 'DS:seed:GAUGE:600:U:U', 'DS:leech:GAUGE:600:U:U', 'DS:conn:GAUGE:600:U:U' ] + RRAs_avg,
+    ],
 }
 
 
