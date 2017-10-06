@@ -18,7 +18,7 @@ metrics = {
     'disk':    { 'rrd': path_rrd+'/disk.rrd', },
     'nginx':   { 'rrd': [ path_rrd+'/nginx_act.rrd', path_rrd+'/nginx_hist.rrd' ], },
     'ping':    { 'rrd': path_rrd+'/ping.rrd', },
-    'torrent': { 'rrd': [ path_rrd+'/nb_torrent.rrd', path_rrd+'/torrent_rate.rrd' ], },
+    #'torrent': { 'rrd': [ path_rrd+'/nb_torrent.rrd', path_rrd+'/torrent_rate.rrd' ], },
 }
 
 def _get_temp():
