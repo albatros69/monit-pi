@@ -1,11 +1,12 @@
 # vim: set fileencoding=utf-8 sw=4 ts=4 et:
 
+import multiprocessing
 from urllib2 import urlopen
 from subprocess import check_output
 from rtorrent_xmlrpc import *
 
 # To be adapted to your platform
-nb_cpu = 1
+nb_cpu = multiprocessing.cpu_count()
 path_rrd = '/var/lib/monit'
 
 metrics = {
