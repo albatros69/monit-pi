@@ -61,6 +61,7 @@ def _get_cpuload():
             tmp = line.split()
             if tmp[0] in cpu_lst:
                 result.append(tuple( tmp[i] for i in range(1, 6) ))
+        return result
     return ( ( 'U', ) * 5, ) * nb_cpu
 
 def _get_network():
