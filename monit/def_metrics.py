@@ -1,9 +1,8 @@
 # vim: set fileencoding=utf-8 sw=4 ts=4 et:
 
 import multiprocessing
-from urllib2 import urlopen
+from urllib.request import urlopen
 from subprocess import check_output
-from rtorrent_xmlrpc import *
 
 # To be adapted to your platform
 nb_cpu = multiprocessing.cpu_count()
@@ -19,7 +18,6 @@ metrics = {
     'disk':    { 'rrd': path_rrd+'/disk.rrd', },
     'nginx':   { 'rrd': [ path_rrd+'/nginx_act.rrd', path_rrd+'/nginx_hist.rrd' ], },
     'ping':    { 'rrd': path_rrd+'/ping.rrd', },
-    #'torrent': { 'rrd': [ path_rrd+'/nb_torrent.rrd', path_rrd+'/torrent_rate.rrd' ], },
 }
 
 def _get_temp():
@@ -55,7 +53,7 @@ def _get_memory():
 
 def _get_cpuload():
     with open('/proc/stat', 'r') as f:
-        cpu_lst = [ 'cpu%d' % i for i in xrange(nb_cpu) ]
+        cpu_lst = [ 'cpu%d' % i for i in range(nb_cpu) ]
         result = []
         for line in f:
             tmp = line.split()
@@ -100,7 +98,7 @@ def _get_nginx():
 def _get_ping():
     cmd = [ 'ping', '-n', '-c3', '-q', 'www.google.com' ]
     try:
-        for line in check_output(cmd).splitlines():
+        for line in check_output(cmd).decode('utf-8').splitlines():
             if line.startswith('rtt '):
                 tmp = line.split('=')[1].strip().split('/')
                 return (tmp[0], tmp[2])
@@ -108,27 +106,3 @@ def _get_ping():
         return ('U', 'U')
     else:
         return ('U', 'U')
-
-def _get_torrent():
-    try:
-        server = SCGIServerProxy('scgi:///tmp/rtorrent_rpc.sock')
-        mc = xmlrpclib.MultiCall(server)
-
-        for a in server.download_list():
-            mc.d.get_down_rate(a)
-            mc.d.get_up_rate(a)
-        
-        total = down = up = 0
-        for i, a in enumerate(mc()):
-            total += 1
-            if i%2 == 0:
-                if a > 0: down += 1
-            elif i%2 == 1:
-                if a > 0: up += 1
-        
-        return [ (str(down), str(up), str(int(total/2))), (str(server.get_down_rate()), str(server.get_up_rate())) ]
-    except:
-        return [ ('U', 'U', 'U'), ('U', 'U') ]
-    else:
-        return [ ('U', 'U', 'U'), ('U', 'U') ]
-

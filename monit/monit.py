@@ -9,7 +9,7 @@ from def_metrics import metrics
 for m in metrics:
     if isinstance(metrics[m]['rrd'], list):
         # multiples rrds
-        for i,f in enumerate(metrics[m]['rrd']): 
+        for i,f in enumerate(metrics[m]['rrd']):
             if not os.path.isfile(f):
                 rrdtool.create(f, rrds[m][i])
     else:
@@ -17,13 +17,13 @@ for m in metrics:
             rrdtool.create(metrics[m]['rrd'], rrds[m])
 
     values = getattr(def_metrics, '_get_'+m)()
-    #print m, repr(values)
+    #print(m, repr(values))
     if isinstance(metrics[m]['rrd'], list):
         # multiples rrds
         for i,f in enumerate(metrics[m]['rrd']):
             rrdtool.update(f, 'N:'+':'.join(values[i]))
     else:
-        if isinstance(values, str) or isinstance(values, unicode):
+        if isinstance(values, str):
             rrdtool.update(metrics[m]['rrd'], 'N:%s' % values)
         else: # tuple
             rrdtool.update(metrics[m]['rrd'], 'N:'+':'.join(values))
