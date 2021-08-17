@@ -30,25 +30,24 @@ if (isset($graph)) {
     echo "<h2>{$rrds[$graph]['title']}</h2>\n";
     foreach (array_keys($periods) as $p) {
         echo '<div class="graph"><h3>'.ucfirst($p)." graph</h3>\n";
-        echo "<p><a href='${_SERVER['PHP_SELF']}?period=$p'><img src='graph.php?graph=$graph&amp;period=$p'></a></p></div>\n";
+        echo "<p><a href='${_SERVER['SCRIPT_NAME']}?period=$p'><img src='graph.php?graph=$graph&amp;period=$p'></a></p></div>\n";
     }
 }
 elseif (isset($period)) {
     echo '<h2>'.ucfirst($period)." graphs</h2>\n";
     foreach ($rrds as $g => $v) {
         echo "<div class=\"graph\"><h3>{$v['title']}</h3>\n";
-        echo "<p><a href='${_SERVER['PHP_SELF']}?graph=$g'><img src='graph.php?graph=$g&amp;period=$period'></a></p></div>\n";
+        echo "<p><a href='${_SERVER['SCRIPT_NAME']}?graph=$g'><img src='graph.php?graph=$g&amp;period=$period'></a></p></div>\n";
     }
 }
 else {
     echo "<ul>\n<li>Monitoring summary: ";
     foreach (array_keys($periods) as $p)
-        echo " <a href='{$_SERVER['PHP_SELF']}?period=$p'>$p</a>";
+        echo " <a href='{$_SERVER['SCRIPT_NAME']}?period=$p'>$p</a>";
     echo "</li>\n";
     foreach ($rrds as $g => $v)
-        echo "<li><a href='${_SERVER['PHP_SELF']}?graph=$g'>{$v['title']}</a></li>\n";
-      
-}    
+        echo "<li><a href='${_SERVER['SCRIPT_NAME']}?graph=$g'>{$v['title']}</a></li>\n";
+}
 
 ?>
     </body>
